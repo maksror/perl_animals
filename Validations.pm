@@ -1,4 +1,5 @@
 package Validations;
+
 =head1 NAME
 
 Validations - some validation methods
@@ -16,8 +17,8 @@ Validations - some validation methods
 =cut
 
 use Data::Dumper;
-
 use Modern::Perl;
+
 
 =item B<is_positive_number>( $value )
 
@@ -26,13 +27,21 @@ use Modern::Perl;
 =cut
 
 sub is_positive_number {
-    my ( $value ) = @_;
+    my @values = @_;
 
-    if ( ref $value or not defined $value ) {
+    if ( $#values != 0 ) {
         return 0;
     }
 
-    if ( $value !~ /^\d*\.?\d+$/ ) {
+    if ( ref $values[0] or not defined $values[0]) {
+        return 0;
+    }
+
+    if ( $values[0] !~ /^\d*\.?\d+$/ ) {
+        return 0;
+    }
+
+    if ( $values[0] <= 0 ) {
         return 0;
     }
 
@@ -48,11 +57,18 @@ sub is_positive_number {
 sub is_in_array {
     my ( $value, $array_ref ) = @_;
 
+    if ( not ref $array_ref ) {
+        print ("return in ref array_ref check\n");
+        return 0;
+    }
+
     if ( ref $value or not defined $value ) {
+        print ("return in ref/defined value check\n");
         return 0;
     }
 
     if ( not grep { $_ eq $value } @{ $array_ref } ) {
+        print ("return in grep check\n");
         return 0;
     }
 
@@ -66,9 +82,17 @@ sub is_in_array {
 =cut
 
 sub is_not_empty_string {
-    my ( $value ) = @_;
+    my @values = @_;
 
-    if ( ref $value or length $value < 1 ) {
+    if ( $#values != 0 ) {
+        return 0;
+    }
+
+    if ( ref $values[0] or not defined $values[0] ) {
+        return 0;
+    }
+
+    if ( length $values[0] <= 0 ) {
         return 0;
     }
 
