@@ -39,39 +39,39 @@ use Carp;
 =cut
 
 sub new {
-    my ( $class, %self ) = @_;
+    my ( $class, %param ) = @_;
 
     my @expected_keys = qw/ weight height sex name sound /;
 
     # Attribute validation
-    for my $key ( keys %self ) {
+    for my $key ( keys %param ) {
         if ( not Validations::is_in_array( $key, \@expected_keys ) ) {
             confess "Invalid key '$key'";
         }
     }
 
-    if ( not Validations::is_positive_number( $self{weight} ) ) {
+    if ( not Validations::is_positive_number( $param{weight} ) ) {
         confess "Invalid weight";
     }
 
-    if ( not Validations::is_positive_number( $self{height} ) ) {
+    if ( not Validations::is_positive_number( $param{height} ) ) {
         confess "Invalid height";
     }
 
-    if ( not Validations::is_in_array( $self{sex}, [ 'male', 'female'] ) ) {
+    if ( not Validations::is_in_array( $param{sex}, [ 'male', 'female'] ) ) {
         confess "Invalid sex";
     }
 
-    if ( not Validations::is_not_empty_string( $self{sound} ) ) {
+    if ( defined $param{sound} and not Validations::is_not_empty_string( $param{sound} ) ) {
         confess "Invalid sound";
     }
 
-    if ( not Validations::is_not_empty_string( $self{name} ) ) {
+    if ( defined $param{name} and not Validations::is_not_empty_string( $param{name} ) ) {
         confess "Invalid name";
     }
 
-    bless \%self, $class;
-    return \%self;
+    bless \%param, $class;
+    return \%param;
 }
 
 =item B<get_name>
@@ -90,11 +90,12 @@ sub get_name {
             return $self->{name};
         }
         else {
-            return ref $self, " without name";
+            my $class_name = ref $self;
+            return "$class_name without name";
         }
     }
     else {
-        return $self, " without name";
+        return "$self without name";
     }
 }
 
@@ -129,10 +130,10 @@ sub eat {
     my ( $self, $food ) = @_;
 
     if ( not Validations::is_not_empty_string( $food ) ) {
-        confess "Wrong food"
+        confess "Wrong food";
     }
 
-    print( $self->get_name, " goes to eat $food\n" );
+    print( $self->get_name . " goes to eat $food\n" );
 }
 
 =item B<sleep>( $hours )
@@ -168,7 +169,7 @@ sub poop {
     my ( $self, $place ) = @_;
 
     if ( not Validations::is_not_empty_string( $place ) ) {
-        confess "Wrong place"
+        confess "Wrong place";
     }
 
     print( $self->get_name, " goes to poop on the $place\n" );

@@ -20,6 +20,26 @@ use Data::Dumper;
 use Modern::Perl;
 
 
+=item B<is_scalar>( $scalar )
+
+ Check if variable is a scalar
+
+=cut
+
+sub is_scalar {
+    my @values = @_;
+
+    if ( $#values != 0 ) {
+        return 0;
+    }
+
+    if ( ref $values[0] or not defined $values[0]) {
+        return 0;
+    }
+
+    return 1;
+}
+
 =item B<is_positive_number>( $value )
 
  Check if value is a positive real number
@@ -29,11 +49,7 @@ use Modern::Perl;
 sub is_positive_number {
     my @values = @_;
 
-    if ( $#values != 0 ) {
-        return 0;
-    }
-
-    if ( ref $values[0] or not defined $values[0]) {
+    if ( not is_scalar( @values ) ) {
         return 0;
     }
 
@@ -58,17 +74,14 @@ sub is_in_array {
     my ( $value, $array_ref ) = @_;
 
     if ( not ref $array_ref ) {
-        print ("return in ref array_ref check\n");
         return 0;
     }
 
-    if ( ref $value or not defined $value ) {
-        print ("return in ref/defined value check\n");
+    if ( not is_scalar( $value ) ) {
         return 0;
     }
 
     if ( not grep { $_ eq $value } @{ $array_ref } ) {
-        print ("return in grep check\n");
         return 0;
     }
 
@@ -84,11 +97,7 @@ sub is_in_array {
 sub is_not_empty_string {
     my @values = @_;
 
-    if ( $#values != 0 ) {
-        return 0;
-    }
-
-    if ( ref $values[0] or not defined $values[0] ) {
+    if ( not is_scalar( @values ) ) {
         return 0;
     }
 
