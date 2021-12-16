@@ -30,9 +30,9 @@ use Carp;
  %attr : weight*, height*, sex*, name, sound
     weight - positive real number
     height - positive real number
-       sex - male, female
-      name - not empty string
-     sound - not empty string
+    sex    - male, female
+    name   - not empty string
+    sound  - not empty string
 
  returns : a new Animal object
 
@@ -41,12 +41,12 @@ use Carp;
 sub new {
     my ( $class, %param ) = @_;
 
-    my @expected_keys = qw/ weight height sex name sound /;
+    my @expected_animal_attributes = qw/ weight height sex name sound /;
 
     # Attribute validation
-    for my $key ( keys %param ) {
-        if ( not Validations::is_in_array( $key, \@expected_keys ) ) {
-            confess "Invalid key '$key'";
+    for my $attribute ( keys %param ) {
+        if ( not Validations::is_in_array( $attribute, \@expected_animal_attributes ) ) {
+            confess "Invalid attribute '$attribute'";
         }
     }
 
@@ -62,11 +62,11 @@ sub new {
         confess "Invalid sex";
     }
 
-    if ( defined $param{sound} and not Validations::is_not_empty_string( $param{sound} ) ) {
+    if ( exists $param{sound} and not Validations::is_not_empty_string( $param{sound} ) ) {
         confess "Invalid sound";
     }
 
-    if ( defined $param{name} and not Validations::is_not_empty_string( $param{name} ) ) {
+    if ( exists $param{name} and not Validations::is_not_empty_string( $param{name} ) ) {
         confess "Invalid name";
     }
 

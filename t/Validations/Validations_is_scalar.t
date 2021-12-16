@@ -1,7 +1,7 @@
 use Test::Spec;
 use Test::utf8;
-use Modern::Perl;
 use Data::Dumper;
+use Modern::Perl;
 
 use lib "../../";
 use Validations;

@@ -2,9 +2,9 @@ use Test::Spec;
 use Test::utf8;
 use Test::MockObject;
 use Test::Output;
-use Modern::Perl;
-use Data::Dumper;
 use Test::Exception;
+use Data::Dumper;
+use Modern::Perl;
 
 use lib "../../";
 use Animal;

@@ -2,9 +2,9 @@ use Test::Spec;
 use Test::utf8;
 use Test::MockObject;
 use Test::Output;
-use Modern::Perl;
-use Data::Dumper;
 use Test::Exception;
+use Data::Dumper;
+use Modern::Perl;
 
 use lib "../../";
 use Animal;
@@ -15,9 +15,9 @@ describe "Создаём объект с полным набором валид�
         my %param = (
             weight => 1,
             height => 1,
-            sex => 'male',
-            name => 'test',
-            sound => 'unga bunga',
+            sex    => 'male',
+            name   => 'test',
+            sound  => 'unga bunga',
         );
 
         Validations->expects( 'is_in_array' )->returns( 1 )->exactly( 6 );
@@ -39,7 +39,7 @@ describe "Создаём объект с валидными параметрам
         my %param = (
             weight => 1,
             height => 1,
-            sex => 'male',
+            sex    => 'male',
         );
 
         Validations->expects( 'is_in_array' )->returns( 1 )->exactly( 4 );
