@@ -61,7 +61,7 @@ describe "Создаём объект с неверным набором атр�
         my %param  = (
             test => 1,
         );
-        my $expect = "/Invalid key/";
+        my $expect = "/Invalid attribute/";
 
         Validations->expects( 'is_in_array' )->returns( 0 )->exactly( 1 );
 
