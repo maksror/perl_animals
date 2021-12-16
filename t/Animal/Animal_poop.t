@@ -14,7 +14,7 @@ use Animal;
 describe "Передаём в функцию объект с объявленным именем и валидную строку -" => sub {
     it "должна вернуть строку 'NAME goes to poop on the PLACE\\n'" => sub {
         my %param  = ( name => 'test' );
-        my $place  = 'test'; 
+        my $place  = 'test';
         my $expect = "$param{name} goes to poop on the $place\n";
 
         my $self   = Test::MockObject->new( \%param );
@@ -29,7 +29,7 @@ describe "Передаём в функцию объект с объявленн�
 describe "Передаём в функцию объект с не валидной строкой -" => sub {
     it "должна умереть" => sub {
         my %param  = ( name => 'test' );
-        my $place  = ''; 
+        my $place  = '';
         my $expect = "/Wrong place/";
 
 

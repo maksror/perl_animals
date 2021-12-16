@@ -15,7 +15,7 @@ describe "Передаём в функцию объект с объявленн�
     it "должна добавить строку 'While eating, the CLASS started rumbling\\n'" => sub {
         my $self = Test::MockObject->new();
 
-        my $class  = ref $self; 
+        my $class  = ref $self;
         my $expect = "While eating, the $class started rumbling\n";
 
         Animal->expects( 'eat' )->returns( 1 );

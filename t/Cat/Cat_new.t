@@ -21,7 +21,7 @@ describe "Создаём объект с указанием новых пара�
         my $animal = Test::MockObject->new();
         Animal->expects( 'new' )->returns( $animal );
 
-        Validations->expects( 'is_in_array' )->returns( 1 )->exactly( 4 );
+        Validations->expects( 'is_in_array' )->returns( 1 )->exactly( 8 );
 
         my $cat = Cat->new( %param );
 
@@ -35,18 +35,13 @@ describe "Создаём объект с указанием новых пара�
 
 
 describe "Создаём объект с нестандартным звуком для кошки -" => sub {
-    it "должен создаться объект с 'sound => meow'" => sub {
+    it "должена умереть" => sub {
         my %param = (
             sound => 'test',
         );
-        my $expect = "/Invalid night vision/";
+        my $expect = "/Invalid soud for a cat/";
 
-        my $animal = Test::MockObject->new();
-        Animal->expects( 'new' )->returns( $animal );
-
-        my $cat = Cat->new( %param );
-
-        ok( $cat->{sound} eq 'meow' );
+        throws_ok ( sub { Cat->new( %param ) }, $expect );
     };
 };
 
@@ -59,9 +54,6 @@ describe "Создаём объект с неверным параметром f
         );
         my $expect = "/Invalid fur lenght/";
 
-        my $animal = Test::MockObject->new();
-        Animal->expects( 'new' )->returns( $animal );
-
         Validations->expects( 'is_in_array' )->returns( sub {
             my ( $value ) = @_;
 
@@ -70,7 +62,7 @@ describe "Создаём объект с неверным параметром f
             }
 
             return 1;
-        })->exactly( 3 );
+        })->exactly( 7 );
 
         throws_ok ( sub { Cat->new( %param ) }, $expect );
     };
@@ -85,9 +77,6 @@ describe "Создаём объект с неверным параметром n
         );
         my $expect = "/Invalid night vision/";
 
-        my $animal = Test::MockObject->new();
-        Animal->expects( 'new' )->returns( $animal );
-
         Validations->expects( 'is_in_array' )->returns( sub {
             my ( $value ) = @_;
 
@@ -96,7 +85,7 @@ describe "Создаём объект с неверным параметром n
             }
 
             return 1;
-        })->exactly( 4 );
+        })->exactly( 8 );
 
         throws_ok ( sub { Cat->new( %param ) }, $expect );
     };
