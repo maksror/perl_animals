@@ -47,11 +47,17 @@ sub new {
     my ( $class, %param ) = @_;
 
     # Check of mandatory attributes for home cat
-    if ( not exists $param{name} or not Validations::is_not_empty_string( $param{name} ) ) {
+    if (
+        not exists $param{name}
+        or not Validations::is_not_empty_string( $param{name} )
+    ) {
         confess "A home cat should have a name";
     }
 
-    if ( not exists $param{owner} or not Validations::is_not_empty_string( $param{owner} ) ) {
+    if (
+        not exists $param{owner}
+        or not Validations::is_not_empty_string( $param{owner} )
+    ) {
         confess "A home cat should have an owner";
     }
 
@@ -68,7 +74,7 @@ sub new {
     my $home_cat = $class->SUPER::new( %cat_param );
 
     for my $attribute ( keys %param ) {
-        $home_cat->{$attribute} = $param{$attribute};
+        $home_cat->{ $attribute } = $param{ $attribute };
     }
 
     return $home_cat;

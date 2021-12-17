@@ -31,14 +31,10 @@ describe "Передаём в функцию объект с объявленн�
 
 describe "Передаём в функцию более 12 часов -" => sub {
     it "должна умереть" => sub {
-        my %param  = (
-            owner => 'test',
-            name  => 'qwe',
-        );
         my $hours  = 13;
         my $expect = "/Too many hours for sleep/";
 
-        my $self   = Test::MockObject->new( \%param );
+        my $self   = Test::MockObject->new();
 
         Validations->expects( 'is_positive_number' )->returns( 1 );
 
@@ -48,14 +44,10 @@ describe "Передаём в функцию более 12 часов -" => sub 
 
 describe "Передаём в функцию объект не валидное кол-во часов -" => sub {
     it "должна умереть" => sub {
-        my %param  = (
-            owner => 'test',
-            name  => 'qwe',
-        );
         my $hours  = 'test';
         my $expect = "/Wrong number of hours of sleep/";
 
-        my $self   = Test::MockObject->new( \%param );
+        my $self   = Test::MockObject->new();
 
         Validations->expects( 'is_positive_number' )->returns( 0 );
 

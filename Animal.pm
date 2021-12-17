@@ -184,8 +184,10 @@ sub poop {
 sub speak {
     my ( $self ) = @_;
 
-    if ( defined $self->get_sound ) {
-        print( $self->get_name, " say ", $self->get_sound, "\n" );
+    my $sound = $self->get_sound;
+
+    if ( defined $sound ) {
+        print( $self->get_name, " say ", $sound, "\n" );
     }
     else {
         print( $self->get_name, " can't speak\n" );

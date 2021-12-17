@@ -12,9 +12,9 @@ use Validations;
 
 describe "Передаём в функцию не пустой паттерн и ссылку на массив содержищий этот паттерн -" => sub {
     it "должна вернуть 1" => sub {
-        my $string  = 'test';
-        my @array   = qw/ test 123 /;
-        my $expect  = 1;
+        my $string = 'test';
+        my @array  = qw/ test 123 /;
+        my $expect = 1;
 
         Validations->expects( 'is_scalar' )->returns( 1 );
 
@@ -28,9 +28,9 @@ describe "Передаём в функцию не пустой паттерн и
 
 describe "Передаём в функцию не пустой паттерн и ссылку на массив не содержищий этот паттерн -" => sub {
     it "должна вернуть 0" => sub {
-        my $string  = 'test';
-        my @array   = qw/ 123 456 /;
-        my $expect  = 0;
+        my $string = 'test';
+        my @array  = qw/ 123 456 /;
+        my $expect = 0;
 
         Validations->expects( 'is_scalar' )->returns( 1 );
 
@@ -42,9 +42,9 @@ describe "Передаём в функцию не пустой паттерн и
 
 describe "Передаём в функцию не пустой паттерн и ссылку на пустой массив -" => sub {
     it "должна вернуть 0" => sub {
-        my $string  = 'test';
+        my $string = 'test';
         my @array;
-        my $expect  = 0;
+        my $expect = 0;
 
         Validations->expects( 'is_scalar' )->returns( 1 );
 
@@ -56,9 +56,9 @@ describe "Передаём в функцию не пустой паттерн и
 
 describe "Передаём в функцию не пустой паттерн и массив -" => sub {
     it "должна вернуть 0" => sub {
-        my $string  = "123";
-        my @array   = qw/ 123 456 /;
-        my $expect  = 0;
+        my $string = "123";
+        my @array  = qw/ 123 456 /;
+        my $expect = 0;
 
         my $actual = Validations::is_in_array( $string, @array );
 
@@ -85,7 +85,7 @@ describe "Передаём в функцию данные в виде хэша -
             string => "123",
             array  => [ 123, 456 ],
         );
-        my $expect  = 0;
+        my $expect = 0;
 
         my $actual = Validations::is_in_array( %data );
 
@@ -99,7 +99,7 @@ describe "Передаём в функцию данные в виде ссылк
             string => "123",
             array  => [ 123, 456 ],
         );
-        my $expect  = 0;
+        my $expect = 0;
 
         my $actual = Validations::is_in_array( \%data );
 

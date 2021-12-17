@@ -24,10 +24,9 @@ describe "Передаём в функцию объект с объявленн�
 
 describe "Передаём в функцию объект без объявленного звука -" => sub {
     it "должна вернуть undef" => sub {
-        my %param  = ( test => 'test' );
         my $expect = undef;
 
-        my $self   = Test::MockObject->new( \%param );
+        my $self   = Test::MockObject->new();
 
         my $actual = Animal::get_sound( $self );
 

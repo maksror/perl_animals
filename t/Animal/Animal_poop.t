@@ -28,12 +28,10 @@ describe "Передаём в функцию объект с объявленн�
 
 describe "Передаём в функцию объект с не валидной строкой -" => sub {
     it "должна умереть" => sub {
-        my %param  = ( name => 'test' );
         my $place  = '';
         my $expect = "/Wrong place/";
 
-
-        my $self   = Test::MockObject->new( \%param );
+        my $self   = Test::MockObject->new();
 
         Validations->expects( 'is_not_empty_string' )->returns( 0 );
 

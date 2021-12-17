@@ -33,7 +33,7 @@ sub is_scalar {
         return 0;
     }
 
-    if ( ref $values[0] or not defined $values[0]) {
+    if ( ref $values[0] or not defined $values[0] ) {
         return 0;
     }
 

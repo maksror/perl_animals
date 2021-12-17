@@ -44,12 +44,12 @@ use base qw( Animal );
 sub new {
     my ( $class, %param ) = @_;
 
-    my @expected_cats_attributes = qw/ fur_length night_vision /;
+    my @expected_cat_attributes = qw/ fur_length night_vision /;
 
     my %animal_param;
 
     for my $attribute ( keys %param ) {
-        if ( not Validations::is_in_array( $attribute, \@expected_cats_attributes ) ) {
+        if ( not Validations::is_in_array( $attribute, \@expected_cat_attributes ) ) {
             $animal_param{ $attribute } = $param{ $attribute };
             delete $param{ $attribute };
         }
@@ -57,7 +57,7 @@ sub new {
 
     # Check additional(cat's) attributes
     for my $attribute ( keys %param ) {
-        if ( not Validations::is_in_array( $attribute, \@expected_cats_attributes ) ) {
+        if ( not Validations::is_in_array( $attribute, \@expected_cat_attributes ) ) {
             confess "Invalid attribute '$attribute'";
         }
     }
@@ -65,14 +65,20 @@ sub new {
     # Validate cat's unique attributes
     if (
         exists $param{fur_length}
-        and not Validations::is_in_array( $param{fur_length}, [ 'short', 'medium', 'long' ] )
+        and not Validations::is_in_array(
+            $param{fur_length},
+            [ 'short', 'medium', 'long' ],
+        )
     ) {
         confess "Invalid fur lenght";
     }
 
     if (
         exists $param{night_vision}
-        and not Validations::is_in_array( $param{night_vision}, [ 'perfect', 'good', 'medium', 'low' ] )
+        and not Validations::is_in_array(
+            $param{night_vision},
+            [ 'perfect', 'good', 'medium', 'low' ],
+        )
     ) {
         confess "Invalid night vision";
     }
